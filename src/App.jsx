@@ -1,11 +1,27 @@
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from "styled-components";
+import SignUp from "./pages/SignUpPage";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
 
   return (
-    <h1></h1>
+    <PagesContainer>
+      <BrowserRouter>
+        
+          <Routes>
+            <Route path="/signup" element={<SignUp />} />
+          </Routes>
+        
+      </BrowserRouter>
+    </PagesContainer>
   )
 }
 
-export default App
+const PagesContainer = styled.main`
+  width: 100vw;
+  height: 100vh;
+  padding: 25px;
+  background-color: #FFFFFF;
+`
+
+
