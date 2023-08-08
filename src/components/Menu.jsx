@@ -36,6 +36,7 @@ export default function Menu() {
                     </MenuLinks>
                 </>
             )}
+            
             {/* <LogoContainer>
                 <p>Shortly</p>
                 <img src={Logo} />
