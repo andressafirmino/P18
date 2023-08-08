@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Menu from "../components/Menu";
 
 export default function SignUp() {
     const [name, setName] = useState('');
@@ -34,7 +35,7 @@ export default function SignUp() {
 
     return (
         <SignUpContainer>
-            {/* <Menu /> */}
+            <Menu />
             <form onSubmit={signUp}>
                 <input placeholder="Nome" type="text" required value={name} onChange={(e) => setName(e.target.value)} disabled={disabled} />
                 <input placeholder="E-mail" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={disabled} />
@@ -59,6 +60,7 @@ const SignUpContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 120px;
 `
 const LinkRegister = styled(Link)`
     color: #52B6FF;

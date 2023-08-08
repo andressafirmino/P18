@@ -20,7 +20,6 @@ export default function App() {
 const PagesContainer = styled.main`
   width: 100vw;
   height: 100vh;
-  padding: 25px;
   background-color: #FFFFFF;
 `
 
