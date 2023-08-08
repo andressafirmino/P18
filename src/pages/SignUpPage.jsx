@@ -51,7 +51,7 @@ export default function SignUp() {
                     )}
                 </button>
             </form>
-            <LinkRegister><p>Já tem conta? Faça login!</p></LinkRegister>
+            <LinkRegister to="/signin"><p>Já tem conta? Faça login!</p></LinkRegister>
         </SignUpContainer>
     )
 }
