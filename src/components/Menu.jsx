@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useContext, useState } from "react";
+import Logo from "../assets/logoDes.png";
+import Slogan from "../assets/Slogan.png"
 
 export default function Menu() {
 
@@ -14,6 +16,7 @@ export default function Menu() {
     }
 
     return (
+        <>
         <MenuContainer>
             {login && (
                 <Welcome>
@@ -29,7 +32,7 @@ export default function Menu() {
             )}
             {!login && (
                 <>
-                    <img />
+                    <img src={Logo}/>
                     <MenuLinks>
                         <Link className="gray" to="/signin">Entrar</Link>
                         <Link className="gray" to="/signup">Cadastrar-se</Link>
@@ -42,6 +45,8 @@ export default function Menu() {
                 <img src={Logo} />
             </LogoContainer> */}
         </MenuContainer>
+        <Caixa src={Slogan}/>
+        </>
     )
 }
 const MenuContainer = styled.div`
@@ -58,7 +63,7 @@ const MenuContainer = styled.div`
     padding: 0 15px;
     img {
         width: 40px;
-        height: 50px;
+        height: auto;
         background-color: #5D9040;
     }
 `
@@ -109,4 +114,8 @@ const LogoContainer = styled.div`
         width: 102px;
         height: 102px;
     }
+`
+const Caixa = styled.img`
+    margin: 160px auto 20px;
+    width: calc(100vh - 800px);    
 `
