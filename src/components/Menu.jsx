@@ -1,12 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useContext, useState } from "react";
-import Logo from "../assets/logoDes.png";
-import Slogan from "../assets/Slogan.png"
+import Logo from "../assets/Logo.png";
 
 export default function Menu() {
 
-    const [login, setLogin] = useState(false);
+    const [login, setLogin] = useState(true);
     const navigate = useNavigate();
     function logout() {
         localStorage.clear();
@@ -16,68 +15,59 @@ export default function Menu() {
     }
 
     return (
-        <>
         <MenuContainer>
-            {login && (
-                <Welcome>
-                    <img />
-                    <p className="green">Seja bem-vindo: { }</p>
-                    <MenuLinks>
-                        <Link className="gray" to="/users/me">Home</Link>
-                        <Link className="gray" to="/ranking">Ranking</Link>
-                        <Link className="gray" to="/" onClick={logout}>Sair</Link>
-                    </MenuLinks>
-                </Welcome>
+            <MenuBox>
+                {login && (
+                    <Welcome>
+                        <Infos>
+                        <img className="logo" src={Logo} />
+                        <p className="green">Seja bem-vindo: { }</p>
+                        </Infos>
+                        <MenuLinks>
+                            <Link className="gray" to="/users/me">Home ●</Link>
+                            <Link className="gray" to="/ranking">Meus Produtos ●</Link>
+                            <Link className="gray" to="/" onClick={logout}>Sair</Link>
+                        </MenuLinks>
+                    </Welcome>
 
-            )}
-            {!login && (
-                <>
-                    <img src={Logo}/>
-                    <MenuLinks>
-                        <Link className="gray" to="/signin">Entrar</Link>
-                        <Link className="gray" to="/signup">Cadastrar-se</Link>
-                    </MenuLinks>
-                </>
-            )}
-            
-            {/* <LogoContainer>
-                <p>Shortly</p>
-                <img src={Logo} />
-            </LogoContainer> */}
+                )}
+                {!login && (
+                    <>
+                        <img className="logo" src={Logo} />
+                        <MenuLinks>
+                            <Link className="gray" to="/signin">Entrar</Link>
+                            <Link className="gray" to="/signup">Cadastrar-se</Link>
+                        </MenuLinks>
+                    </>
+                )}
+
+            </MenuBox>
+            <Caixa src={Logo} />
         </MenuContainer>
-        <Caixa src={Slogan}/>
-        </>
     )
 }
 const MenuContainer = styled.div`
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+   
+`
+const MenuBox = styled.div`
     width:100%;
     height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto 50px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: aquamarine;
     padding: 0 15px;
-    img {
-        width: 40px;
-        height: auto;
-        background-color: #5D9040;
-    }
+    border: 1px solid #FF671F;
 `
 const Welcome = styled.div`
+    width: 100%;
     height: 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    p {
-        font-size: 14px;
-        font-weight: 400;
-        margin-top: 40px;
-        color: #5D9040;
-    }
 `
 const MenuLinks = styled.div`
     height: 18px;
@@ -98,24 +88,25 @@ const MenuLinks = styled.div`
         text-decoration: none;
     }
 `
-const LogoContainer = styled.div`
-    width: 314px;
-    height: 102px;
-    margin: 50px auto 20px;
+const Infos = styled.div`
+    width: 40%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
-    p {        
-        font-size: 64px;
-        font-weight: 200;
-        color: #000;
+    .logo {
+        width: 40px;
+        height: auto;
+        margin-right: 10px;
     }
-    img {
-        width: 102px;
-        height: 102px;
+    p {
+        font-size: 14px;
+        font-weight: 400;
+        color: #5D9040;
+        text-align: center;
     }
 `
 const Caixa = styled.img`
-    margin: 160px auto 20px;
-    width: calc(100vh - 800px);    
+    display: flex;
+    margin: 0 auto 20px;
+    width: calc(100vh - 700px);   
 `

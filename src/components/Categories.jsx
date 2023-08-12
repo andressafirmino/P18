@@ -21,7 +21,7 @@ const CategoriesContainer = styled.div`
         justify-content: space-between;
         align-items: center;
         font-size: 20px;
-        margin-top: 150px;
+        margin-top: 310px;
 
         p{
             border: 2px solid white;
