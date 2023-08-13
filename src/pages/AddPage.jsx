@@ -14,19 +14,17 @@ export default function AddPage() {
     const [disabled, setDisabled] = useState(false);
 
     function addProduct() {
-      /*   const url = `${import.meta.env.VITE_API_URL}/adicionar`;
-        body = {name, description, photos: {
-            photo, photo2, photo3
-        }, category};
+        const url = `${import.meta.env.VITE_API_URL}/adicionar`;
+        body = {name, description,photo, photo2, photo3, category};
         axios.post(url, body, {
             headers: { authorization: `Bearer ${token}` }
         })
         .then(response => {
-            console.log(response.data);
+            console.log(response.data.products);
         })
         .catch(e => {
             alert(e.message);
-        }) */
+        })
     }
 
     return (

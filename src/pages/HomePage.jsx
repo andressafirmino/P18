@@ -1,17 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Categories from "../components/Categories";
 import Menu from "../components/Menu";
 import styled from "styled-components";
 import axios from "axios";
+import { AuthContext } from "../context/auth";
 
 export default function HomePage() {
 
+    const {token} = useContext(AuthContext);
     const [all, setAll] = useState([]);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/`)
+        const url = `${import.meta.env.VITE_API_URL}/`;
+        axios.get(url,  {
+            headers: { authorization: `Bearer ${token}` }
+        })
             .then((res) => {
-                setAll(res.data);
+              console.log(res);
             })
             .catch((err) => {
                 console.log(err.message)

@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { AuthContext } from "../context/auth";
 
 export default function Categories() {
+
+    const {setCategory} = useContext(AuthContext);
+    
     return (
         <CategoriesContainer>
             <LinksCategories to="/pokemon" onClick={() => setCategory("pokemon")}>Pokemon</LinksCategories>
