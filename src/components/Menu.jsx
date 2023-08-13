@@ -2,10 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useContext, useState } from "react";
 import Logo from "../assets/Logo.png";
+import { AuthContext } from "../context/auth";
 
 export default function Menu() {
 
-    const [login, setLogin] = useState(true);
+    const {name, login} = useContext(AuthContext);
     const navigate = useNavigate();
     function logout() {
         localStorage.clear();
@@ -21,12 +22,12 @@ export default function Menu() {
                     <Welcome>
                         <Infos>
                         <img className="logo" src={Logo} />
-                        <p className="green">Seja bem-vindo: { }</p>
+                        <p className="blue">Seja bem-vindo: {name}</p>
                         </Infos>
                         <MenuLinks>
-                            <Link className="gray" to="/users/me">Home ●</Link>
-                            <Link className="gray" to="/ranking">Meus Produtos ●</Link>
-                            <Link className="gray" to="/" onClick={logout}>Sair</Link>
+                            <Link className="pink" to="/">Home ●</Link>
+                            <Link className="pink" to="/me">Meus Produtos ●</Link>
+                            <Link className="pink" to="/" onClick={logout}>Sair</Link>
                         </MenuLinks>
                     </Welcome>
 
@@ -35,8 +36,8 @@ export default function Menu() {
                     <>
                         <img className="logo" src={Logo} />
                         <MenuLinks>
-                            <Link className="gray" to="/signin">Entrar</Link>
-                            <Link className="gray" to="/signup">Cadastrar-se</Link>
+                            <Link className="pink" to="/signin">Entrar ●</Link>
+                            <Link className="pink" to="/signup">Cadastrar-se</Link>
                         </MenuLinks>
                     </>
                 )}
@@ -51,7 +52,11 @@ const MenuContainer = styled.div`
     position: fixed;
     left: 0;
     top: 0;
-   
+    .logo {
+        width: 40px;
+        height: auto;
+        margin-right: 10px;
+    }
 `
 const MenuBox = styled.div`
     width:100%;
@@ -60,7 +65,6 @@ const MenuBox = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
-    border: 1px solid #FF671F;
 `
 const Welcome = styled.div`
     width: 100%;
@@ -78,12 +82,12 @@ const MenuLinks = styled.div`
         font-size: 14px;
         font-weight: 400;
     }    
-    .green {
-        color: #5D9040;
+    .blue {
+        color: #009CBD;
         text-decoration: none;
     }
-    .gray {
-        color: #9C9C9C;
+    .pink {
+        color: #FF3EB5;
         margin-left: 10px;
         text-decoration: none;
     }
@@ -101,12 +105,12 @@ const Infos = styled.div`
     p {
         font-size: 14px;
         font-weight: 400;
-        color: #5D9040;
+        color: #009CBD;
         text-align: center;
     }
 `
 const Caixa = styled.img`
     display: flex;
-    margin: 0 auto 20px;
-    width: calc(100vh - 700px);   
+    margin: 0 auto;
+    width: 200px;   
 `

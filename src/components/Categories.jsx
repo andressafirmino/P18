@@ -15,16 +15,18 @@ const CategoriesContainer = styled.div`
         height: 50px;
         width: 100%;
         font-size: 10px;
-        background-color: #73384E;
+        background-color: #00ab84;
         color: white;
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 20px;
-        margin-top: 310px;
+        margin-top: 270px;
 
         p{
+            background-color: #00AB84;
             border: 2px solid white;
+            border-radius: 5px;
             cursor: pointer;
         }
     

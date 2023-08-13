@@ -9,9 +9,9 @@ export default function HomePage() {
     const [all, setAll] = useState([]);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/`)
             .then((res) => {
-                setAllProducts(res.data);
+                setAll(res.data);
             })
             .catch((err) => {
                 console.log(err.message)

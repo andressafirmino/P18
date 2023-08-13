@@ -3,19 +3,24 @@ import styled from "styled-components";
 import SignUp from "./pages/SignUpPage";
 import SignIn from "./pages/SingInPage";
 import HomePage from "./pages/HomePage";
+import MePage from "./pages/MePage";
+import AuthProvider from "./context/auth";
+import AddPage from "./pages/AddPage";
 
 export default function App() {
 
   return (
     <PagesContainer>
       <BrowserRouter>
-
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
-        </Routes>
-
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/me" element={<MePage />} />
+            <Route path="/adicionar" element={<AddPage />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </PagesContainer>
   )
@@ -23,7 +28,7 @@ export default function App() {
 
 const PagesContainer = styled.main`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: #FFFFFF;
 `
 

@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
         font-style: normal;
         font-weight: 400;
         box-sizing: border-box;
-
+        background-color: #f8ffc9;
         input {
             width: 769px;
             height: 60px;
@@ -17,9 +17,9 @@ const GlobalStyle = createGlobalStyle`
             padding: 15px;
             margin: 1px;
             border-radius: 12px;
-            border: 1px solid rgba(120, 177, 89, 0.25);
+            border: 1px solid rgba(0, 171, 132);
             background: #FFF;
-            box-shadow: 0px 4px 24px 0px rgba(120, 177, 89, 0.12);
+            box-shadow: 0px 4px 24px 0px rgba(0, 171, 132, 0.5);
 
             :focus {
                 border: 2px solid #ffb6b6;
@@ -42,16 +42,16 @@ const GlobalStyle = createGlobalStyle`
             outline: none;
             border: none;
             border-radius: 12px;
-            background-color: #5D9040;
+            background-color: #00AB84;
             font-size: 14px;
             font-weight: 700;
-            color: #fff;
             cursor: pointer;
             padding: 12px;
             text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: #FFFFFF;
         }
         .top {
             margin-top: 50px;

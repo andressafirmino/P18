@@ -23,7 +23,7 @@ export default function SignUp() {
         }
     
         const url = `${import.meta.env.VITE_API_URL}/signup`;
-        const newSignUp = { name, email, password, confirmPassword };
+        const newSignUp = { name, email, password, confirmPassword, cpf, phone };
         const promise = axios.post(url, newSignUp);
         setDisabled(true);
         promise.then(() => navigate('/signin'));
@@ -43,11 +43,11 @@ export default function SignUp() {
                 <input placeholder="Confirme a senha" type="password" autoComplete="new-password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} disabled={disabled} />
                 <input placeholder="CPF" type="text" required value={cpf} onChange={(e) => setCpf(e.target.value)} disabled={disabled} />
                 <input placeholder="Telefone" type="text" required value={phone} onChange={(e) => setPhone(e.target.value)} disabled={disabled} />
-                <button className="top" type='submit' disabled={disabled} >
+                <button type='submit' disabled={disabled} >
                     {disabled ? (
-                        <ThreeDots width={32} height={21} border-radius={4.5} background-color="#5D9040" color="#FFFFFF" font-size={9} />
+                        <ThreeDots width={32} height={21} border-radius={4.5} background-color="#00AB84" color="#FFFFFF" font-size={9} />
                     ) : (
-                        <p>Criar Conta</p>
+                        <>Criar Conta</>
                     )}
                 </button>
             </form>
@@ -60,10 +60,10 @@ const SignUpContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 120px;
+    margin-top: 270px;
 `
 const LinkRegister = styled(Link)`
-    color: #52B6FF;
+    color: #009CBD;
     margin: 30px auto;
     text-decoration: none;
     p {
