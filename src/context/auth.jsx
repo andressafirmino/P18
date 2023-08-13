@@ -10,6 +10,7 @@ export default function AuthProvider({ children }) {
     const [name, setName] = useState(defaultUser.name || '');
     const [token, setToken] = useState(defaultUser.token || '');
     const [id, setId] = useState('');
+    const [category, setCategory] = useState('');
     const [login, setLogin] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -27,6 +28,7 @@ export default function AuthProvider({ children }) {
             name, setName,
             token, setToken,
             id, setId,
+            category, setCategory,
             login, setLogin
         }}>
             {children}

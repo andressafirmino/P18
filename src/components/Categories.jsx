@@ -4,9 +4,9 @@ import styled from "styled-components";
 export default function Categories() {
     return (
         <CategoriesContainer>
-            <LinksCategories to="/pokemon">Pokemon</LinksCategories>
-            <LinksCategories to="/yugioh">Yu-gi-oh</LinksCategories>
-            <LinksCategories to="/digimon">Digimon</LinksCategories>
+            <LinksCategories to="/pokemon" onClick={() => setCategory("pokemon")}>Pokemon</LinksCategories>
+            <LinksCategories to="/yugioh" onClick={() => setCategory("yugioh")}>Yu-gi-oh</LinksCategories>
+            <LinksCategories to="/digimon" onClick={() => setCategory("digimon")}>Digimon</LinksCategories>
         </CategoriesContainer>
     )
 }
