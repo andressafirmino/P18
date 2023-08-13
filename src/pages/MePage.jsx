@@ -41,18 +41,31 @@ export default function MePage() {
                     <p className="empty">Carregando...</p>
                 )}
                 {myProducts.length === 0 && (
-                    <p className="empty">Você ainda não adicionou nenhum item!</p>
+                    <>
+                        <p className="empty">Você ainda não adicionou nenhum item!</p>
+                    </>
                 )}
                 {myProducts && (
                     <>
-                        {myProducts.map(item => (<CartProducts key={item.id}
-                            name={item.name} images={item.images} id={item.id}
-                            value={item.value} description={item.description}
-                        />))}
+                        {myProducts.map(prod =>
+                            <Product>
+
+                            </Product>
+                        )}
                     </>
                 )}
-
-
+                <Line></Line>
+                <Product>
+                    <InfoProduct>
+                        <img />
+                        <p className="title">Name</p>
+                    </InfoProduct>
+                    <Remove>
+                        <Hide>Ocultar produto da lista de venda</Hide>
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </Remove>
+                </Product>
+                <Line></Line>
             </MeContainer>
         </>
     )
@@ -86,4 +99,53 @@ const Add = styled.div`
         background-color: #009CBD;
         margin-left: 5px;
     }
+`
+const Product = styled.div`
+    width: 80%;
+    height: 80px;
+    margin: 0 auto;   
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    ion-icon {
+        font-size: 40px;
+        margin-left: 10px;
+    }
+`
+const InfoProduct = styled.div`
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+        width: 60px;
+        height: 60px;
+        border: 1px solid #00AB84;
+        border-radius: 10px;
+        margin-right: 10px;
+    }
+    .title {
+        font-size: 30px;
+        font-weight: 700;
+        color: #00AB84;
+    }
+    p {
+        font-size: 20px;
+        color: #009CBD;
+    }
+`
+const Remove = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+`
+const Hide = styled.button`
+    height: 50px;
+    background-color: #FF671F;
+`
+const Line = styled.div`
+    width: 60%;
+    border: 1px solid #D3D3D3;
+    margin: 20px auto; 
 `

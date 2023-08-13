@@ -8,6 +8,7 @@ export default function Menu() {
 
     const {name, login} = useContext(AuthContext);
     const navigate = useNavigate();
+    
     function logout() {
         localStorage.clear();
         setToken('');

@@ -1,12 +1,13 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Categories() {
     return (
         <CategoriesContainer>
-                <p>Pokemon</p>
-                <p>Yu-gi-oh</p>
-                <p>Digimon</p>
-            </CategoriesContainer>
+            <LinksCategories to="/pokemon">Pokemon</LinksCategories>
+            <LinksCategories to="/yugioh">Yu-gi-oh</LinksCategories>
+            <LinksCategories to="/digimon">Digimon</LinksCategories>
+        </CategoriesContainer>
     )
 }
 
@@ -22,12 +23,14 @@ const CategoriesContainer = styled.div`
         align-items: center;
         font-size: 20px;
         margin-top: 270px;
+ 
+`
 
-        p{
-            background-color: #00AB84;
+const LinksCategories = styled(Link)`
+    background-color: #00AB84;
+            color: #FFFFFF;
             border: 2px solid white;
             border-radius: 5px;
             cursor: pointer;
-        }
-    
+            text-decoration: none;
 `

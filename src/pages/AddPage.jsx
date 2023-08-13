@@ -14,7 +14,7 @@ export default function AddPage() {
     const [disabled, setDisabled] = useState(false);
 
     function addProduct() {
-        const url = `${import.meta.env.VITE_API_URL}/adicionar`;
+      /*   const url = `${import.meta.env.VITE_API_URL}/adicionar`;
         body = {name, description, photos: {
             photo, photo2, photo3
         }, category};
@@ -26,7 +26,7 @@ export default function AddPage() {
         })
         .catch(e => {
             alert(e.message);
-        })
+        }) */
     }
 
     return (

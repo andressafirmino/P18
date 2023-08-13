@@ -14,12 +14,12 @@ export default function SignIn() {
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
     
-    function login(e) {
+    function loginUser (e) {
         e.preventDefault();
     
         const url = `${import.meta.env.VITE_API_URL}/signin`;
-        const login = { email, password };
-        const promise = axios.post(url, login);
+        const signin = { email, password };
+        const promise = axios.post(url, signin);
         setDisabled(true);
         promise.then(response => {
           setName(response.data.name);
@@ -37,7 +37,7 @@ export default function SignIn() {
     return (
         <SignInContainer>
             <Menu />
-            <form onSubmit={login}>
+            <form onSubmit={loginUser}>
                 <input placeholder="E-mail" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={disabled} />
                 <input placeholder="Senha" type="password" autoComplete="new-password" required value={password} onChange={(e) => setPassword(e.target.value)} disabled={disabled} />
                 <button type='submit' disabled={disabled} >
