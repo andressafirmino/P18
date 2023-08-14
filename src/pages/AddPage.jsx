@@ -19,12 +19,17 @@ export default function AddPage() {
 
     function addProduct(e) {
         e.preventDefault();
-
+        if(photo2 === '') {
+            setPhoto2('https://cdn.awsli.com.br/production/static/img/produto-sem-imagem.gif');
+        }
+        if(photo3 === '') {
+            setPhoto3('https://cdn.awsli.com.br/production/static/img/produto-sem-imagem.gif');
+        }
         const url = `${import.meta.env.VITE_API_URL}/adicionar`;
         const body = {name, description,photo, photo2, photo3, category};
-        axios.post(url, body), {
+        axios.post(url, body, {
             headers: { authorization: `Bearer ${token}`}
-        }
+        })
         .then(response => {
             navigate("/me");
         })
