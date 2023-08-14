@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Menu from "../components/Menu";
 import styled from "styled-components";
 import axios from "axios";
+import { AuthContext } from "../context/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function AddPage() {
 
+    const {token} = useContext(AuthContext);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [photo, setPhoto] = useState('');
@@ -12,15 +15,18 @@ export default function AddPage() {
     const [photo3, setPhoto3] = useState('');
     const [category, setCategory] = useState('');
     const [disabled, setDisabled] = useState(false);
+    const navigate = useNavigate();
 
-    function addProduct() {
+    function addProduct(e) {
+        e.preventDefault();
+
         const url = `${import.meta.env.VITE_API_URL}/adicionar`;
-        body = {name, description,photo, photo2, photo3, category};
+        const body = {name, description,photo, photo2, photo3, category};
         axios.post(url, body, {
             headers: { authorization: `Bearer ${token}` }
         })
         .then(response => {
-            console.log(response.data.products);
+            navigate("/me");
         })
         .catch(e => {
             alert(e.message);
@@ -38,9 +44,9 @@ export default function AddPage() {
                 <input placeholder="Foto" type="text"  value={photo3} onChange={(e) => setPhoto3(e.target.value)} disabled={disabled} />
                 
                 <DivStyled>
-                    <button type="button" onClick={() => setCategory("pokemon")} className={category === "pokemon" ? 'select' : ''}>Pokemon</button>
-                    <button type="button" onClick={() => setCategory("yugioh")} className={category === "yugioh" ? 'select' : ''}>Yu-gi-oh</button>
-                    <button type="button" onClick={() => setCategory("digimon")} className={category === "digimon" ? 'select' : ''}>Digimon</button>
+                    <button type="button" onClick={() => setCategory("Pokemon")} className={category === "Pokemon" ? 'select' : ''}>Pokemon</button>
+                    <button type="button" onClick={() => setCategory("Yu-gi-oh")} className={category === "Yu-gi-oh" ? 'select' : ''}>Yu-gi-oh</button>
+                    <button type="button" onClick={() => setCategory("Digimon")} className={category === "Digimon" ? 'select' : ''}>Digimon</button>
                 </DivStyled>
                 <button type='submit' disabled={disabled} >
                     {disabled ? (

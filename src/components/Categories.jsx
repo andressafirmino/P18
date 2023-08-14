@@ -9,9 +9,9 @@ export default function Categories() {
     
     return (
         <CategoriesContainer>
-            <LinksCategories to="/pokemon" onClick={() => setCategory("pokemon")}>Pokemon</LinksCategories>
-            <LinksCategories to="/yugioh" onClick={() => setCategory("yugioh")}>Yu-gi-oh</LinksCategories>
-            <LinksCategories to="/digimon" onClick={() => setCategory("digimon")}>Digimon</LinksCategories>
+            <LinksCategories to="/pokemon" onClick={() => setCategory("Pokemon")}>Pokemon</LinksCategories>
+            <LinksCategories to="/yugioh" onClick={() => setCategory("Yu-gi-oh")}>Yu-gi-oh</LinksCategories>
+            <LinksCategories to="/digimon" onClick={() => setCategory("Digimon")}>Digimon</LinksCategories>
         </CategoriesContainer>
     )
 }

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function CategoryPage() {
 
-    const {category} = useContext(AuthContext);
+    const { category, setId } = useContext(AuthContext);
     const [all, setAll] = useState([]);
     const navigate = useNavigate();
 
@@ -16,8 +16,7 @@ export default function CategoryPage() {
         const url = `${import.meta.env.VITE_API_URL}/${category}`;
         axios.get(url)
             .then((res) => {
-              console.log("foi");
-              setAll(res.data.products);
+                setAll(res.data.products);
             })
             .catch((err) => {
                 console.log(err.message)
@@ -36,23 +35,22 @@ export default function CategoryPage() {
             <Categories />
             <HomeContainer>
                 {!all || all.length === 0 && (
-                    <p>Carregando...</p>
+                    <p>No momento não existem produtos dessa categoria...</p>
                 )}
 
                 {all && (
                     <>
-                        {all.map(l =>
-                            <CsProduct key={l.idProduct}>
-                            <img src={l.photos[0].photo}  onClick={()=> getById(l.idProduct)}/>
-                            <h2  onClick={()=>getById(l.idProduct)}>{l.nameProduct}</h2>
-                            <div className="valuesProduct"  onClick={()=>getById(l.idProduct)}> {l.category}</div>                        
-                                <button className="addCard">Fale com o vendedor</button>                          
-                            
-                        </CsProduct>
+                        {all.filter(prod => prod.status).map(prod =>
+                            <CsProduct key={prod.idProduct}>
+                                <img src={prod.photos[0].photo} onClick={() => getById(prod.idProduct)} />
+                                <h2 onClick={() => getById(prod.idProduct)}>{prod.nameProduct}</h2>
+                                <div className="valuesProduct" onClick={() => getById(prod.idProduct)}> {prod.category}</div>
+                                <button className="addCard">Fale com o vendedor</button>
+                            </CsProduct>
                         )}
                     </>
                 )}
-                
+
             </HomeContainer>
         </>
     )
@@ -65,6 +63,7 @@ const HomeContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 320px;
+  background-color: #f8ffc9;
   main{
     width: 100hv;
     height: auto;

@@ -3,17 +3,28 @@ import styled from "styled-components";
 import { useContext, useState } from "react";
 import Logo from "../assets/Logo.png";
 import { AuthContext } from "../context/auth";
+import axios from "axios";
 
 export default function Menu() {
 
-    const { name, login } = useContext(AuthContext);
+    const { name, login, setLogin, token, setToken } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    function logout() {
-        localStorage.clear();
-        setToken('');
-        setLogin(false);
-        navigate("/")
+    function logout(e) {
+        e.preventDefault();
+        const url = `${import.meta.env.VITE_API_URL}/deslogar/${token}`;
+        axios.delete(url, {
+            headers: { authorization: `Bearer ${token}` }
+        })
+        .then(() => {
+            localStorage.clear();
+            setToken('');
+            setLogin(false);
+            navigate("/");
+        })
+        .catch( e => {
+            alert(e.response.data.message);
+        })
     }
 
     return (

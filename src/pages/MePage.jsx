@@ -37,22 +37,21 @@ export default function MePage() {
         navigate(`/produto/${id}`);
     }
     function hide(id) {
-        const url = `${import.meta.env.VITE_API_URL}/me`;
-        const body = {id};
-        axios.put(url, body, {
+        console.log(token)
+        const url = `${import.meta.env.VITE_API_URL}/me/${id}`;
+        axios.put(url, null, {
             headers: { authorization: `Bearer ${token}` }
         })
-        .then(() => {
-            setReload(true);
-        })
-        .catch(e => {
-            console.log("nao foi");
-        })
+            .then(() => {
+                setReload(true);
+            })
+            .catch(e => {
+                alert(e.response.data.message);
+            })
     }
     function delId(id) {
-        const url = `${import.meta.env.VITE_API_URL}/me`;
-        const body = {id};
-        axios.delete(url, body, {
+        const url = `${import.meta.env.VITE_API_URL}/me/${id}`;
+        axios.delete(url, {
             headers: { authorization: `Bearer ${token}` }
         })
         .then(() => {
@@ -74,7 +73,6 @@ export default function MePage() {
                 {!myProducts && (
                     <p className="empty">Carregando...</p>
                 )}
-                <Line></Line>               
                 <Line></Line>
                 {myProducts.length === 0 && (
                     <>
@@ -83,21 +81,20 @@ export default function MePage() {
                 )}
                 {myProducts && (
                     <>
-                        {myProducts.map(prod =>
-                            <Product key={prod.id}>
+                        {myProducts.map(prod => 
+                            <Product key={prod.id} className={prod.status ? "" : "unavailable"}>
                                 <InfoProduct>
-                        <img src={prod.photos} onClick={()=> getById(prod.id)}/>
-                        <p className="title" onClick={()=> getById(prod.id)}>{prod.name}</p>
-                    </InfoProduct>
-                    <Remove>
-                        <Hide onClick={() => hide(prod.id)}>Ocultar produto da lista de venda</Hide>
-                        <ion-icon name="trash-outline" onClick={() => delId(prod.id)}></ion-icon>
-                    </Remove>
-                            </Product>
+                                    <img src={prod.photos} onClick={() => getById(prod.id)} />
+                                    <p className="title" onClick={() => getById(prod.id)}>{prod.name}</p>
+                                </InfoProduct>
+                                <Remove>
+                                    <Hide onClick={() => hide(prod.id)}>{prod.status ? "Ocultar produto da lista de venda" : "Mostrar produto da lista de venda"}</Hide>
+                                    <ion-icon name="trash-outline" onClick={() => delId(prod.id)}></ion-icon>
+                                </Remove>
+                            </Product>                        
                         )}
                     </>
                 )}
-                <Line></Line>               
                 <Line></Line>
             </MeContainer>
         </>
@@ -114,6 +111,9 @@ const MeContainer = styled.div`
         color: #6D6E71;
         font-size: 40px;
         margin: 0 auto;
+    }
+    .unavailable {
+        opacity: 0.6;
     }
 `
 const Add = styled.div`
@@ -141,27 +141,35 @@ const Product = styled.div`
     justify-content: space-around;
     align-items: center;
     padding: 10px;
+    background-color: #FFFFFF;
+    border: 1px solid #D3D3D3;
+    border-radius: 10px;
+    margin-bottom: 10px;
     ion-icon {
         font-size: 40px;
         margin-left: 10px;
+        background-color: #FFFFFF;
     }
+    
 `
 const InfoProduct = styled.div`
     width: 60%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    background-color: #FFFFFF;
     img {
         width: 60px;
         height: 60px;
-        border: 1px solid #00AB84;
+        border: 1px solid #D3D3D3;
         border-radius: 10px;
         margin-right: 10px;
     }
     .title {
         font-size: 30px;
-        font-weight: 700;
-        color: #00AB84;
+        font-weight: 400;
+        color: #009CBD;
+        background-color: #FFFFFF;
     }
     p {
         font-size: 20px;
@@ -172,6 +180,7 @@ const Remove = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    background-color: #FFFFFF;
 `
 const Hide = styled.button`
     height: 50px;
@@ -182,3 +191,4 @@ const Line = styled.div`
     border: 1px solid #D3D3D3;
     margin: 20px auto; 
 `
+

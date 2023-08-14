@@ -16,11 +16,11 @@ export default function AuthProvider({ children }) {
     const location = useLocation();
     
     useEffect(() => {
-        if (lsUser === null && (location.pathname !== "/signup" || location.pathname !== "/signin")) {
+        if (lsUser === null && (location.pathname !== "/signup" || location.pathname !== "/signin" || location.pathname !== "/")) {
             navigate("/");
-        } else if (lsUser && location.pathname !== "/signup") {
+        } else if (lsUser && (location.pathname !== "/signup" || location.pathname !== "/adicionar")) {
             setLogin(true);
-            navigate("/me");
+            navigate("/");
         } 
     }, [])
     return (

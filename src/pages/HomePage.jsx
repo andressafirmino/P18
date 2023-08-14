@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
 
-    const {setId} = useContext(AuthContext);
+    const { setId } = useContext(AuthContext);
     const [all, setAll] = useState([]);
     const navigate = useNavigate();
 
@@ -16,8 +16,7 @@ export default function HomePage() {
         const url = `${import.meta.env.VITE_API_URL}/`;
         axios.get(url)
             .then((res) => {
-              console.log(res.data.products[0].photos[0].photo);
-              setAll(res.data.products);
+                setAll(res.data.products);
             })
             .catch((err) => {
                 console.log(err.message)
@@ -41,18 +40,18 @@ export default function HomePage() {
 
                 {all && (
                     <>
-                        {all.map(l =>
-                            <CsProduct key={l.idProduct}>
-                            <img src={l.photos[0].photo}  onClick={()=> getById(l.idProduct)}/>
-                            <h2  onClick={()=>getById(l.idProduct)}>{l.nameProduct}</h2>
-                            <div className="valuesProduct"  onClick={()=>getById(l.idProduct)}> {l.category}</div>                        
-                                <button className="addCard">Fale com o vendedor</button>                          
-                            
-                        </CsProduct>
+                        {all.filter(prod => prod.status).map(prod =>
+                            <CsProduct key={prod.idProduct} onClick={() => getById(prod.idProduct)}>
+                                <img src={prod.photos[0].photo} />
+                                <h2  >{prod.nameProduct}</h2>
+                                <div className="valuesProduct" > {prod.category}</div>
+                                <button className="addCard">Para mais informações!</button>
+
+                            </CsProduct>
                         )}
                     </>
                 )}
-                
+
             </HomeContainer>
         </>
     )
@@ -87,6 +86,7 @@ const CsProduct = styled.div`
         height: 85%;
         cursor: pointer;
         border-radius: 12px;
+        border: 0.3px solid #FF3EB5;
         transition: transform 0.3s;
         &:hover {
             transform: scale(1.05);
@@ -96,6 +96,7 @@ const CsProduct = styled.div`
         overflow-y: hidden;
         max-height: 100px;
         cursor: pointer;
+        margin-top: 3px;
     }
     .valuesProduct{
         margin-top: 3px; 
