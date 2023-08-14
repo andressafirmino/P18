@@ -16,14 +16,15 @@ export default function AddPage() {
     const [category, setCategory] = useState('');
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
+    const linkPhoto = 'https://cdn.awsli.com.br/production/static/img/produto-sem-imagem.gif';
 
     function addProduct(e) {
         e.preventDefault();
         if(photo2 === '') {
-            setPhoto2('https://cdn.awsli.com.br/production/static/img/produto-sem-imagem.gif');
+            setPhoto2(linkPhoto);
         }
         if(photo3 === '') {
-            setPhoto3('https://cdn.awsli.com.br/production/static/img/produto-sem-imagem.gif');
+            setPhoto3(linkPhoto);
         }
         const url = `${import.meta.env.VITE_API_URL}/adicionar`;
         const body = {name, description,photo, photo2, photo3, category};
