@@ -9,6 +9,7 @@ export default function MePage() {
 
     const { token, setId } = useContext(AuthContext);
     const [myProducts, setMyProducts] = useState([]);
+    const [reload, setReload] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,13 +20,14 @@ export default function MePage() {
             .then((res) => {
                 setMyProducts(res.data);
                 console.log(res.data)
+                setReload(false);
             })
             .catch((err) => {
                 console.log("nao foi")
                 console.log(err)
             })
 
-    }, [])
+    }, [reload])
 
     function add() {
         navigate("/adicionar");
@@ -34,6 +36,33 @@ export default function MePage() {
         setId(id);
         navigate(`/produto/${id}`);
     }
+    function hide(id) {
+        const url = `${import.meta.env.VITE_API_URL}/me`;
+        const body = {id};
+        axios.put(url, body, {
+            headers: { authorization: `Bearer ${token}` }
+        })
+        .then(() => {
+            setReload(true);
+        })
+        .catch(e => {
+            console.log("nao foi");
+        })
+    }
+    function delId(id) {
+        const url = `${import.meta.env.VITE_API_URL}/me`;
+        const body = {id};
+        axios.delete(url, body, {
+            headers: { authorization: `Bearer ${token}` }
+        })
+        .then(() => {
+            setReload(true);
+        })
+        .catch(e => {
+            console.log("nao foi");
+        })
+    }
+
     return (
         <>
             <Menu />
@@ -61,8 +90,8 @@ export default function MePage() {
                         <p className="title" onClick={()=> getById(prod.id)}>{prod.name}</p>
                     </InfoProduct>
                     <Remove>
-                        <Hide>Ocultar produto da lista de venda</Hide>
-                        <ion-icon name="trash-outline"></ion-icon>
+                        <Hide onClick={() => hide(prod.id)}>Ocultar produto da lista de venda</Hide>
+                        <ion-icon name="trash-outline" onClick={() => delId(prod.id)}></ion-icon>
                     </Remove>
                             </Product>
                         )}
