@@ -38,9 +38,9 @@ export default function AddPage() {
                 <input placeholder="Foto" type="text"  value={photo3} onChange={(e) => setPhoto3(e.target.value)} disabled={disabled} />
                 
                 <DivStyled>
-                    <button type="button" onClick={() => setCategory("Pokemon")} className={category === "Pokemon" ? 'select' : ''}>Pokemon</button>
-                    <button type="button" onClick={() => setCategory("Yu-gi-oh")} className={category === "Yu-gi-oh" ? 'select' : ''}>Yu-gi-oh</button>
-                    <button type="button" onClick={() => setCategory("Digimon")} className={category === "Digimon" ? 'select' : ''}>Digimon</button>
+                    <button type="button" onClick={() => setCategory("pokemon")} className={category === "pokemon" ? 'select' : ''}>Pokemon</button>
+                    <button type="button" onClick={() => setCategory("yugioh")} className={category === "yugioh" ? 'select' : ''}>Yu-gi-oh</button>
+                    <button type="button" onClick={() => setCategory("digimon")} className={category === "digimon" ? 'select' : ''}>Digimon</button>
                 </DivStyled>
                 <button type='submit' disabled={disabled} >
                     {disabled ? (

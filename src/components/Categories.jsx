@@ -27,8 +27,9 @@ const CategoriesContainer = styled.div`
         justify-content: space-between;
         align-items: center;
         font-size: 20px;
-        margin-top: 270px;
- 
+        position: fixed;
+        left: 0;
+        top: 250px
 `
 
 const LinksCategories = styled(Link)`

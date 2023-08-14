@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage";
 import MePage from "./pages/MePage";
 import AuthProvider from "./context/auth";
 import AddPage from "./pages/AddPage";
+import ProductById from "./pages/ProductById";
+import CategoryPage from "./pages/CategoryPage";
 
 export default function App() {
 
@@ -15,6 +17,8 @@ export default function App() {
         <AuthProvider>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/:category" element={<CategoryPage />} />
+            <Route path="/produto/:id" element={<ProductById />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/me" element={<MePage />} />

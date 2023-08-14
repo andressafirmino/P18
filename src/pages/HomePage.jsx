@@ -4,11 +4,13 @@ import Menu from "../components/Menu";
 import styled from "styled-components";
 import axios from "axios";
 import { AuthContext } from "../context/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
 
-    const {token} = useContext(AuthContext);
+    const {token, setId} = useContext(AuthContext);
     const [all, setAll] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const url = `${import.meta.env.VITE_API_URL}/`;
@@ -16,7 +18,7 @@ export default function HomePage() {
             headers: { authorization: `Bearer ${token}` }
         })
             .then((res) => {
-              console.log(res.data.products);
+              console.log(res.data.products[0].photos[0].photo);
               setAll(res.data.products);
             })
             .catch((err) => {
@@ -25,6 +27,10 @@ export default function HomePage() {
 
     }, []);
 
+    function getById(id) {
+        setId(id);
+        navigate(`/produto/${id}`);
+    }
 
     return (
         <>
@@ -39,13 +45,10 @@ export default function HomePage() {
                     <>
                         {all.map(l =>
                             <CsProduct key={l.idProduct}>
-                            <img src={l.photos[0].photo}  onClick={()=>displayProduct(l.category, l.idProduct)}/>
-                            <h2  onClick={()=>displayProduct(l.category, l.idProduct)}>{l.nameProduct}</h2>
-                            <div className="valuesProduct"  onClick={()=>displayProduct(l.category, l.idProduct)}> {l.category}</div>
-                            
-                            
-                                <button className="addCard">Fale com o vendedor</button>
-                            
+                            <img src={l.photos[0].photo}  onClick={()=> getById(l.idProduct)}/>
+                            <h2  onClick={()=>getById(l.idProduct)}>{l.nameProduct}</h2>
+                            <div className="valuesProduct"  onClick={()=>getById(l.idProduct)}> {l.category}</div>                        
+                                <button className="addCard">Fale com o vendedor</button>                          
                             
                         </CsProduct>
                         )}
@@ -63,6 +66,7 @@ const HomeContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 320px;
   main{
     width: 100hv;
     height: auto;
@@ -77,7 +81,7 @@ const CsProduct = styled.div`
     padding: 10px;
     display: flex;
     flex-direction: column;
-    border: 3px solid #73384E;
+    border: 0.3px solid #FF3EB5;
     border-radius: 5px;
 
     img{

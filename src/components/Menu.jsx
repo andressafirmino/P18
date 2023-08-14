@@ -6,9 +6,9 @@ import { AuthContext } from "../context/auth";
 
 export default function Menu() {
 
-    const {name, login} = useContext(AuthContext);
+    const { name, login } = useContext(AuthContext);
     const navigate = useNavigate();
-    
+
     function logout() {
         localStorage.clear();
         setToken('');
@@ -22,8 +22,8 @@ export default function Menu() {
                 {login && (
                     <Welcome>
                         <Infos>
-                        <img className="logo" src={Logo} />
-                        <p className="blue">Seja bem-vindo: {name}</p>
+                            <img className="logo" src={Logo} />
+                            <p className="blue">Seja bem-vindo: {name}</p>
                         </Infos>
                         <MenuLinks>
                             <Link className="pink" to="/">Home ●</Link>
@@ -37,6 +37,7 @@ export default function Menu() {
                     <>
                         <img className="logo" src={Logo} />
                         <MenuLinks>
+                            <Link className="pink" to="/">Home ●</Link>
                             <Link className="pink" to="/signin">Entrar ●</Link>
                             <Link className="pink" to="/signup">Cadastrar-se</Link>
                         </MenuLinks>
