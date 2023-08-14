@@ -41,7 +41,7 @@ export default function CategoryPage() {
                 {all && (
                     <>
                         {all.filter(prod => prod.status).map(prod =>
-                            <CsProduct key={prod.idProduct} conClick={() => getById(prod.idProduct)}>
+                            <CsProduct key={prod.idProduct} onClick={() => getById(prod.idProduct)}>
                                 <img src={prod.photos[0].photo} />
                                 <h2 >{prod.nameProduct}</h2>
                                 <div className="valuesProduct" > {prod.category}</div>
