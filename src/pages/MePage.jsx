@@ -18,8 +18,8 @@ export default function MePage() {
             headers: { authorization: `Bearer ${token}` }
         })
             .then((res) => {
-                setMyProducts(res.data);
                 console.log(res.data)
+                setMyProducts(res.data);                
                 setReload(false);
             })
             .catch((err) => {
