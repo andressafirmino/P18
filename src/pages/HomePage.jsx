@@ -8,15 +8,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
 
-    const {token, setId} = useContext(AuthContext);
+    const {setId} = useContext(AuthContext);
     const [all, setAll] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         const url = `${import.meta.env.VITE_API_URL}/`;
-        axios.get(url,  {
-            headers: { authorization: `Bearer ${token}` }
-        })
+        axios.get(url)
             .then((res) => {
               console.log(res.data.products[0].photos[0].photo);
               setAll(res.data.products);

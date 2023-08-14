@@ -17,13 +17,13 @@ export default function CategoryPage() {
         axios.get(url)
             .then((res) => {
               console.log("foi");
-              
+              setAll(res.data.products);
             })
             .catch((err) => {
                 console.log(err.message)
             })
 
-    }, []);
+    }, [category]);
 
     function getById(id) {
         setId(id);

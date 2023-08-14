@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function MePage() {
 
-    const { token } = useContext(AuthContext);
+    const { token, setId } = useContext(AuthContext);
     const [myProducts, setMyProducts] = useState([]);
     const navigate = useNavigate();
 
@@ -18,6 +18,7 @@ export default function MePage() {
         })
             .then((res) => {
                 setMyProducts(res.data);
+                console.log(res.data)
             })
             .catch((err) => {
                 console.log("nao foi")
@@ -28,6 +29,10 @@ export default function MePage() {
 
     function add() {
         navigate("/adicionar");
+    }
+    function getById(id) {
+        setId(id);
+        navigate(`/produto/${id}`);
     }
     return (
         <>
@@ -40,6 +45,8 @@ export default function MePage() {
                 {!myProducts && (
                     <p className="empty">Carregando...</p>
                 )}
+                <Line></Line>               
+                <Line></Line>
                 {myProducts.length === 0 && (
                     <>
                         <p className="empty">Você ainda não adicionou nenhum item!</p>
@@ -48,23 +55,20 @@ export default function MePage() {
                 {myProducts && (
                     <>
                         {myProducts.map(prod =>
-                            <Product>
-
-                            </Product>
-                        )}
-                    </>
-                )}
-                <Line></Line>
-                <Product>
-                    <InfoProduct>
-                        <img />
-                        <p className="title">Name</p>
+                            <Product key={prod.id}>
+                                <InfoProduct>
+                        <img src={prod.photos} onClick={()=> getById(prod.id)}/>
+                        <p className="title" onClick={()=> getById(prod.id)}>{prod.name}</p>
                     </InfoProduct>
                     <Remove>
                         <Hide>Ocultar produto da lista de venda</Hide>
                         <ion-icon name="trash-outline"></ion-icon>
                     </Remove>
-                </Product>
+                            </Product>
+                        )}
+                    </>
+                )}
+                <Line></Line>               
                 <Line></Line>
             </MeContainer>
         </>

@@ -11,8 +11,7 @@ export default function ProductById() {
     const { id } = useContext(AuthContext);
     const [product, setProduct] = useState([]);
     const [mainImage, setMainImage] = useState('');
-    const urlPhoto = '';
-
+    
     useEffect(() => {
         const url = `${import.meta.env.VITE_API_URL}/produto/${id}`;
         axios.get(url)
