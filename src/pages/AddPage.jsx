@@ -22,9 +22,9 @@ export default function AddPage() {
 
         const url = `${import.meta.env.VITE_API_URL}/adicionar`;
         const body = {name, description,photo, photo2, photo3, category};
-        axios.post(url, body, {
-            headers: { authorization: `Bearer ${token}` }
-        })
+        axios.post(url, {
+            headers: { authorization: `Bearer ${token}`}
+        }, body)
         .then(response => {
             navigate("/me");
         })
