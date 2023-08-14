@@ -80,6 +80,7 @@ const ProductInfo = styled.div`
 `
 const BoxPhotos = styled.div`
     width: 60%;
+    width: 350px;
     display: flex;
     padding: 3px;
     background-color: #FFFFFF;

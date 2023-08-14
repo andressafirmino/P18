@@ -41,10 +41,10 @@ export default function CategoryPage() {
                 {all && (
                     <>
                         {all.filter(prod => prod.status).map(prod =>
-                            <CsProduct key={prod.idProduct}>
-                                <img src={prod.photos[0].photo} onClick={() => getById(prod.idProduct)} />
-                                <h2 onClick={() => getById(prod.idProduct)}>{prod.nameProduct}</h2>
-                                <div className="valuesProduct" onClick={() => getById(prod.idProduct)}> {prod.category}</div>
+                            <CsProduct key={prod.idProduct} conClick={() => getById(prod.idProduct)}>
+                                <img src={prod.photos[0].photo} />
+                                <h2 >{prod.nameProduct}</h2>
+                                <div className="valuesProduct" > {prod.category}</div>
                                 <button className="addCard">Fale com o vendedor</button>
                             </CsProduct>
                         )}
@@ -73,7 +73,7 @@ const HomeContainer = styled.div`
 `;
 const CsProduct = styled.div`
     width: 200px;
-    height: 300px;
+    height: 350px;
     margin: 20px;
     padding: 10px;
     display: flex;
