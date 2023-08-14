@@ -73,7 +73,7 @@ const HomeContainer = styled.div`
 `;
 const CsProduct = styled.div`
     width: 200px;
-    height: 300px;
+    height: 350px;
     margin: 20px;
     padding: 10px;
     display: flex;
